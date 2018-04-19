@@ -1,0 +1,90 @@
+{
+  "name": "bmax-react-router",
+  "version": "4.0.0",
+  "description": "A react router v4 extension",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "doc": "typedoc — out doc src/index.ts",
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json -c tslint.json ./src/**/*.ts",
+    "test": "nyc mocha src/**/*.spec.ts src/**/**/*.spec.ts --recursive --require ts-node/register --require source-map-support/register",
+    "coverage": "nyc report --reporter=text-lcov",
+    "coverage:coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "postinstall:build": "npm run ci && npm run build",
+    "ci": "npm run lint && npm run test",
+    "postinstall": "postinstall-build dist --script postinstall:build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmaximilian/bmax-react-router.git"
+  },
+  "keywords": [
+    "services",
+    "container",
+    "bmaximilian",
+    "typescript",
+    "javascript",
+    "helper"
+  ],
+  "author": "Maximilian Beck <contact@maximilianbeck.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmaximilian/bmax-react-router/issues"
+  },
+  "homepage": "https://github.com/bmaximilian/bmax-react-router#readme",
+  "nyc": {
+    "check-coverage": true,
+    "per-file": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 90,
+    "branches": 90,
+    "reporter": [
+      "lcov",
+      "text-summary",
+      "html"
+    ],
+    "include": [
+      "src/**/*.spec.ts",
+      "src/**/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "dist",
+      "src/index.*"
+    ],
+    "cache": true,
+    "all": false,
+    "report-dir": "./coverage"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^5.0.0",
+    "@types/node": "^9.6.5",
+    "@types/react": "^16.3.11",
+    "@types/react-dom": "^16.0.5",
+    "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.0",
+    "nyc": "^11.6.0",
+    "react": "^16.3.2",
+    "react-dev-utils": "^5.0.1",
+    "react-dom": "^16.3.2",
+    "source-map-support": "^0.5.4",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "tslint-config-prettier": "^1.10.0",
+    "tslint-eslint-rules": "^5.1.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.8.1"
+  },
+  "dependencies": {
+    "postinstall-build": "^5.0.1"
+  }
+}
