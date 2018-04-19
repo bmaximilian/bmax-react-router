@@ -1,6 +1,6 @@
 {
   "name": "bmax-react-router",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "A react router v4 extension",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

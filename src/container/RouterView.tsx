@@ -9,15 +9,7 @@ import { Route } from '../models/Route';
 /**
  * @class RouterView
  */
-export class RouterView extends React.Component<{
-    addChildRoutesByPlaceholder: boolean;
-    defaultRoute: Route;
-    isAuthenticated: boolean;
-    loginRoute: Route;
-    redirectionMiddleware: (availableRoutes: Route[]) => Route;
-    routeAddMiddleware: (availableRoutes: Route[] | null) => Route[];
-    routes: Route[];
-}> {
+export class RouterView extends React.Component<any> {
     /**
      * Type validation of props
      *
@@ -40,9 +32,9 @@ export class RouterView extends React.Component<{
      */
     public static defaultProps = {
         addChildRoutesByPlaceholder: true,
-        defaultRoute: { path: '/' },
+        defaultRoute: new Route({ path: '/' }),
         isAuthenticated: false,
-        loginRoute: { path: '/login' },
+        loginRoute: new Route({ path: '/login' }),
         routes: null,
     };
 
@@ -74,8 +66,13 @@ export class RouterView extends React.Component<{
     public render() {
         this.renderRouteComponents();
         let redirect = null;
-        const defaultRoute = isObject(this.props.defaultRoute) ? this.props.defaultRoute : new Route({ path: '/' });
-        const loginRoute = isObject(this.props.loginRoute) ? this.props.loginRoute : new Route({ path: '/login' });
+        const defaultRoute: Route = this.props.defaultRoute && isObject(this.props.defaultRoute)
+            ? this.props.defaultRoute
+            : new Route({ path: '/' });
+
+        const loginRoute: Route = this.props.loginRoute && isObject(this.props.loginRoute)
+            ? this.props.loginRoute
+            : new Route({ path: '/login' });
 
         if (isFunction(this.props.redirectionMiddleware)) {
             const buffer = this.props.redirectionMiddleware(this.availableRoutes);
@@ -193,7 +190,7 @@ export class RouterView extends React.Component<{
      * @param {Route} route : Route : The route to check
      * @returns {boolean} : Returns if a route contains other routes
      */
-    private containsRoute(route: Route) {
+    private containsRoute(route: Route | any) {
         let contains = false;
         this.availableRoutes.every((r) => {
             if (has(route, 'path') && has(r, 'path') && r.path === route.path) {

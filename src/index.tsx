@@ -36,7 +36,7 @@ class CombinedRouter extends React.Component<{
         return (
             <Router {...this.props}>
                 {this.props.children}
-                {React.createElement('RouterView', { ...this.props })}
+                {React.createElement(RouterView, { ...this.props })}
             </Router>
         );
     }
