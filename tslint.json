@@ -4,7 +4,8 @@
     "tslint-config-prettier",
     "tslint-eslint-rules",
     "tslint-react",
-    "tslint-config-airbnb"
+    "tslint-config-airbnb",
+    "tslint-no-unused-expression-chai"
   ],
   "rules": {
     "import/extensions": [
@@ -27,6 +28,9 @@
       "error",
       "always"
     ],
+    "ter-indent": [true, 4, {
+      "SwitchCase": 1
+    }],
     "indent": [
       true,
       "spaces",
